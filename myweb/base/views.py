@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import certif
+from .models import certif, User
+
 
 # Create your views here.
 
@@ -27,3 +28,10 @@ def article3(request):
 
     print(certifs)
     return render(request, 'base/article3.html', context)
+
+
+def profile(request):
+    user = User.objects.get(id=1)
+    certifs = user.certifs.all()
+    print(certifs)
+    return render(request,'base/profile.html')
