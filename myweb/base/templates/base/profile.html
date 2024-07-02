@@ -4,26 +4,6 @@
 
 {% block content %}
 
-
-<div>
-<h5> ჩემი პროფილი </h5></div>
-
-<div style ="display:flex">
-{% for certif in certifs %}
-
-<div class="card" style="width: 18rem; margin-left:30px">
-  <img src="{{ certif.picture}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{certif.name}}</h5>
-    <p class="card-text">{{certif.description}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-
-  </div>
-</div>
-
-{% endfor %}
-
-</div>
-
+{% include 'base/certifs.html' %}
 
 {% endblock %}

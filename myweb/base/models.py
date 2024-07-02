@@ -13,9 +13,16 @@ class Who(models.Model):
         return self.name
 
 
+class Genre(models.Model):
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
 class certif(models.Model):
     picture = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
+    genre = models.ManyToManyField(Genre, blank=True, related_name="certifs")
     who = models.ForeignKey(Who, on_delete=models.SET("Unknown Who"))
     description = models.TextField(max_length=500)
 
@@ -25,4 +32,4 @@ class certif(models.Model):
 
 
 class User(AbstractUser):
-    certifs = models.ManyToManyField(certif, blank=True, related_name="certifs")
+    certifs = models.ManyToManyField(certif, blank=True, related_name="users")
