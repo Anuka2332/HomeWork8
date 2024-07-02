@@ -1,0 +1,48 @@
+<style>
+  .home-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  }
+.genres{
+margin: 100px 30px;
+
+}
+</style>
+
+<div class="home-container">
+
+<div class="genres">
+  <h1>ფილტრი</h1>
+  <br>
+  <a href="{{ request.path }}"> ALl ({{ genres.count }}) </a>
+  {% for genre in genres %}
+  <hr>
+  <a href="{{ request.path }}?q={{ genre.name }}">{{genre}} ({{ genres.count }})</a>
+  {% endfor %}
+
+
+</div>
+<div>
+
+
+<div>
+<h5> {{ heading }} </h5></div>
+
+<div style ="display:flex">
+{% for certif in certifs %}
+
+<div class="card" style="width: 18rem; margin-left:30px">
+  <img src="{{ certif.picture}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{certif.name}}</h5>
+    <p class="card-text">{{certif.description}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+  </div>
+</div>
+{% endfor %}
+</div>
+
+</div>
+
+</div>
