@@ -26,6 +26,14 @@
          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'profile' request.user.id %}"> პროფილი </a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'logout' %}"> გამოსვლა </a>
+        </li>
+        {% else %}
+       <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'login' %}"> შესვლა </a>
+        </li>
         {% endif %}
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">რეგისტრაცია</a>

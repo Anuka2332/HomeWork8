@@ -19,7 +19,7 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
-class certif(models.Model):
+class Certif(models.Model):
     picture = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     genre = models.ManyToManyField(Genre, blank=True, related_name="certifs")
@@ -31,5 +31,6 @@ class certif(models.Model):
         return f"{self.name}_{self.who}"
 
 
+
 class User(AbstractUser):
-    certifs = models.ManyToManyField(certif, blank=True, related_name="users")
+    certifs = models.ManyToManyField(Certif, blank=True, related_name="users")
