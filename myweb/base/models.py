@@ -20,11 +20,12 @@ class Genre(models.Model):
         return self.name
 
 class Certif(models.Model):
-    picture = models.CharField(max_length=200)
+    picture = models.ImageField(null=True, blank=True)
     name = models.CharField(max_length=200)
     genre = models.ManyToManyField(Genre, blank=True, related_name="certifs")
     who = models.ForeignKey(Who, on_delete=models.SET("Unknown Who"))
     description = models.TextField(max_length=500)
+    file = models.FileField(null=True)
 
 
     def __str__(self):

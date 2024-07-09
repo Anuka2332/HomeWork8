@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Certif, User, Genre
+from .models import Certif, User, Genre, Who
 from django.db.models import Q
 from django.contrib.auth import authenticate,login, logout
+from django.contrib.auth.decorators import login_required
+from .forms import MyUserCreationForm, BookForms
 
 
 # Create your views here.
@@ -11,7 +13,7 @@ from django.contrib.auth import authenticate,login, logout
 def home(request):
     return render(request, 'base/home.html')
 
-
+@login_required(login_url='login')
 def about(request):
     return render(request, 'base/about.html')
 
@@ -70,7 +72,6 @@ def delete(request, id):
 
 
 def login_page(request):
-    page = 'login'
     if request.user.is_authenticated:
         return redirect('home')
 
@@ -89,8 +90,8 @@ def login_page(request):
             return redirect('home')
         else:
              pass #ერორის მესიჯი
-    context = {'page': page}
-    return render(request, 'base/login_register.html', context)
+
+    return render(request, 'base/login.html')
 
 
 def logout_user(request):
@@ -100,5 +101,43 @@ def logout_user(request):
 
 
 def register_page(request):
-    context = {}
-    return render(request, 'base/login_register.html', context)
+    form = MyUserCreationForm()
+
+    if request.method == "POST":
+        form = MyUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request, user)
+            return redirect('home')
+
+
+    context = {'form': form}
+    return render(request, 'base/register.html', context)
+
+
+def add_book(request):
+    whos = Who.objects.all()
+    genres = Genre.objects.all()
+    form = BookForms()
+
+    if request.method == "POST":
+        certif_who = request.POST.get('who')
+        certif_genre = request.POST.get('genre')
+
+        who, created = Who.objects.get_or_create(name=certif_who)
+        genre, created = Genre.objects.get_or_create(name=certif_who)
+
+        form = BookForms(request.POST)
+
+        new_certif = Certif(picture=request.FILES['picture'], name=form.data['name'], who=who,
+                            description=form.data['description'], file=request.FILES['file'])
+
+        new_certif.save()
+        new_certif.genre.add(genre)
+
+        return redirect('home')
+
+    context = {'form': form, 'whos': whos, 'genres': genres}
+    return render(request, 'base/add_book.html', context)
