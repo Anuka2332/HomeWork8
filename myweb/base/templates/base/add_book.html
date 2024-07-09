@@ -1,0 +1,78 @@
+{% extends 'main.html' %}
+
+{% block title %}  <title>add Page</title> {% endblock %}
+
+{% block content %}
+
+
+<h1> სერთიფიკატის დამატება </h1>
+<form action="" method="POST" enctype="multipart/form-data">
+   {% csrf_token %}
+<div>
+   <label>Certificat Picture:</label>
+   <br>
+   {{ form.picture }}
+
+</div>
+
+<div>
+   <label>Certificat Title</label>
+   <br>
+   {{ form.name }}
+
+</div>
+
+   <div>
+   <label for="certif_who">Who:</label>
+   <br>
+<input required type="text" name="who" list="who-list">
+      <datalist id="who-list">
+         {% for who in whos %}
+         <select id="certif_who">
+            <option value="{{ who.name}}">{{who.name }} </option>
+         </select>
+         {% endfor %}
+
+      </datalist>
+
+</div>
+
+
+
+
+      <div>
+   <label for="certif_genre">Description:</label>
+   <br>
+<input required type="text" name="genre" list="genre-list">
+      <datalist id="genre-list">
+         {% for genre in genres %}
+         <select id="certif_genre">
+            <option value="{{ genre.name}}">{{genre.name }} </option>
+         </select>
+         {% endfor %}
+
+      </datalist>
+
+</div>
+
+<div>
+   <label>Certificat Description</label>
+   <br>
+   {{ form.description }}
+
+</div>
+
+<div>
+   <label>PDF</label>
+   <br>
+   {{ form.file }}
+
+</div>
+   <br>
+
+   <input type="submit" value="Create" >
+
+
+</form>
+
+{% endblock %}

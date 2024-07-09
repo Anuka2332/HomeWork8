@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block title %} <title> Register Page </title> {% endblock %}
+
+
+{% block content %}
+
+<h1> Login Page </h1>
+            <div>
+                <form method="POST" action="">
+                    <br>
+                    <br>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <input type ="submit" value="Register">
+
+                    <br>
+                    <br>
+                     <p> უკვე დარეგისტრირებული ხართ? </p>
+                     <a href="{% url 'login' %}"> შესვლა </a>
+
+                </form>
+            </div>
+
+
+{% endblock %}
+
