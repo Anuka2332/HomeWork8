@@ -7,6 +7,17 @@
 margin: 100px 30px;
 
 }
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .card {
+    margin-bottom: 33px;
+
+    }
+
+
 </style>
 
 <div class="home-container">
@@ -27,8 +38,15 @@ margin: 100px 30px;
 
 <div>
 <h5> {{ heading }} </h5></div>
+    <br>
+    <br>
 
-<div style ="display:flex">
+    <a href="{% url 'add' %}">სერთიფიკატის დამატება</a>
+    <br>
+    <br>
+
+
+<div style ="display:flex" class="row">
 {% for certif in certifs %}
 
 <div class="card" style="width: 18rem; margin-left:30px">
@@ -38,7 +56,9 @@ margin: 100px 30px;
     <p class="card-text">{{certif.description}}</p>
 
     {% if request.user.is_authenticated %}
-     <a href="#" class="btn btn-primary">Read</a>
+
+     <a href="{% url 'reading' certif.id %}" class="btn btn-primary">Read</a>
+
     {% if certif in request.user.books.all %}
      <a href="{% url 'delete' certif.id %}" class="btn btn-primary">Delete</a>
     {% else  %}

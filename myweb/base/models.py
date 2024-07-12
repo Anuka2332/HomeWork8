@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 # Create your models here.
 
 
@@ -20,12 +21,21 @@ class Genre(models.Model):
         return self.name
 
 class Certif(models.Model):
+    creator = models.ForeignKey('User', on_delete=models.SET("Unknown Creator"))
     picture = models.ImageField(null=True, blank=True)
     name = models.CharField(max_length=200)
     genre = models.ManyToManyField(Genre, blank=True, related_name="certifs")
     who = models.ForeignKey(Who, on_delete=models.SET("Unknown Who"))
     description = models.TextField(max_length=500)
     file = models.FileField(null=True)
+
+    created = models.DateTimeField(auto_now_add=True)
+    # updated= models.DateTimeField(auto_now=True)
+
+
+class Meta:
+    ordering = ['-name']
+
 
 
     def __str__(self):

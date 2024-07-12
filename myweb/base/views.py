@@ -5,7 +5,8 @@ from django.db.models import Q
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import MyUserCreationForm, BookForms
-
+from .seeder import seeder_func
+from django.contrib import messages
 
 # Create your views here.
 
@@ -26,9 +27,9 @@ def article2(request):
     return render(request, 'base/article2.html')
 
 
-def article3(request):
+def article3(request, id):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
-
+    seeder_func()
     certifs = Certif.objects.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(genre__name__icontains=q))
     certifs = list(set(certifs))
     genres = Genre.objects.all()
@@ -58,7 +59,7 @@ def adding(request, id):
     certif = Certif.objects.get(id=id)
     user = request.user
     user.certifs.add(certif)
-    return redirect('article3')
+    return redirect('article3', user.id)
 
 
 
@@ -82,14 +83,14 @@ def login_page(request):
         try:
             user = User.objects.get(username=username)
         except:
-            pass #  Error Message...
+            messages.error(request, "Username doesn't exist!")
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect('home')
         else:
-             pass #ერორის მესიჯი
+             messages.error(request, "Username or Password is not correct!")
 
     return render(request, 'base/login.html')
 
@@ -132,7 +133,7 @@ def add_book(request):
         form = BookForms(request.POST)
 
         new_certif = Certif(picture=request.FILES['picture'], name=form.data['name'], who=who,
-                            description=form.data['description'], file=request.FILES['file'])
+                            description=form.data['description'], file=request.FILES['file'], creator=request.user)
 
         new_certif.save()
         new_certif.genre.add(genre)
@@ -141,3 +142,7 @@ def add_book(request):
 
     context = {'form': form, 'whos': whos, 'genres': genres}
     return render(request, 'base/add_book.html', context)
+
+def reading(request, id):
+    certif = Certif.objects.get(id=id)
+    return render(request, 'base/reading.html', {'certif': certif})

@@ -7,7 +7,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('article1/', views.article1, name='article1'),
     path('article2/', views.article2, name='article2'),
-    path('article3/', views.article3, name='article3'),
+    path('article3/<str:id>/', views.article3, name='article3'),
     path('profile/<str:pk>/', views.profile, name='profile'),
     path('adding/<str:id>/', views.adding, name='adding'),
     path('delete/<str:id>/', views.delete, name='delete'),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('logout/', views.logout_user,name='logout'),
     path('register/', views.register_page, name='register'),
     path('add/', views.add_book, name='add'),
-
+    path('reading/<str:id>/', views.reading, name='reading'),
 
 ]
 
