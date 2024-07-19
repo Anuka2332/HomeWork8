@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Certif, User, Genre, Who
+from .models import Certif, User, Genre, Who, Comment
 from django.db.models import Q
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
@@ -68,7 +68,7 @@ def delete(request, id):
     if request.method == "POST":
         request.user.certifs.remove(certif)
         return redirect('article3')
-    return render(request, 'base/delete.html', {'certif': certif})
+    return render(request, 'base/delete.html', {'obj': certif})
 
 
 
@@ -147,9 +147,17 @@ def add_book(request):
     context = {'form': form, 'whos': whos, 'genres': genres}
     return render(request, 'base/add_book.html', context)
 
+@login_required(login_url='login')
 def reading(request, id):
     certif = Certif.objects.get(id=id)
-    return render(request, 'base/reading.html', {'certif': certif})
+    certif_comment = certif.comment_set.all().order_by('-created')
+    if request.method == 'POST':
+        comment = Comment.objects.create(
+            user=request.user,
+            certif=certif,
+            body=request.POST.get('body')
+        )
+    return render(request, 'base/reading.html', {'certif': certif, 'comments':certif_comment})
 
 def delete_certif(request, id):
     certif = Certif.objects.get(id=id)
@@ -158,7 +166,7 @@ def delete_certif(request, id):
         certif.file.delete()
         certif.delete()
         return redirect('home')
-    return render(request, 'base/delete.html', {'certif': certif})
+    return render(request, 'base/delete.html', {'obj': certif})
 
 @login_required(login_url='login')
 def update_user(request):
@@ -168,7 +176,15 @@ def update_user(request):
         form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect ('profile', user.id)
+            return redirect('profile', user.id)
 
     return render(request, 'base/update_user.html', {'form': form})
 
+def delete_comment(request, id):
+    comment = Comment.objects.get(id=id)
+
+    certif = comment.certif
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('reading', certif.id)
+    return render(request, 'base/delete.html', {'obj': comment})

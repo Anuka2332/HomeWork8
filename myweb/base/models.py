@@ -47,3 +47,16 @@ class User(AbstractUser):
     certifs = models.ManyToManyField(Certif, blank=True, related_name="users")
     bio = models.TextField(null=True)
     avatar = models.ImageField(null=True, default='photoo.png')
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    certif = models.ForeignKey(Certif, on_delete=models.CASCADE)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
+
+    def __str__(self):
+        return self.body
+
