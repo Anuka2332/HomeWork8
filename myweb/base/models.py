@@ -34,7 +34,7 @@ class Certif(models.Model):
 
 
 class Meta:
-    ordering = ['-name']
+    ordering = ['-created']
 
 
 
@@ -45,3 +45,5 @@ class Meta:
 
 class User(AbstractUser):
     certifs = models.ManyToManyField(Certif, blank=True, related_name="users")
+    bio = models.TextField(null=True)
+    avatar = models.ImageField(null=True, default='photoo.png')

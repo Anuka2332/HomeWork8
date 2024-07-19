@@ -15,13 +15,14 @@
 
 {% if messages  %}
 
-<ul class=" messages">
+
     {% for message in messages  %}
-    <li>
-        {{ message }}
-    </li>
+<div class ="alert alert-danger alert-dismissable">
+    <button class ="btn-close" type="button" data-bs-dismiss="alert"></button>
+    <strong>  {{ message }} </strong>
+</div>
     {% endfor %}
-</ul>
+
 
 {% endif %}
 

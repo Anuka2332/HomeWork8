@@ -4,7 +4,7 @@ from .models import Certif, User, Genre, Who
 from django.db.models import Q
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import MyUserCreationForm, BookForms
+from .forms import MyUserCreationForm, BookForms, UserForm
 from .seeder import seeder_func
 from django.contrib import messages
 
@@ -31,7 +31,7 @@ def article3(request, id):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
     seeder_func()
     certifs = Certif.objects.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(genre__name__icontains=q))
-    certifs = list(set(certifs))
+    certifs = list(dict.fromkeys(certifs))
     genres = Genre.objects.all()
     # certifs = certif.objects.all()
     context = {"certifs": certifs}
@@ -135,8 +135,12 @@ def add_book(request):
         new_certif = Certif(picture=request.FILES['picture'], name=form.data['name'], who=who,
                             description=form.data['description'], file=request.FILES['file'], creator=request.user)
 
-        new_certif.save()
-        new_certif.genre.add(genre)
+        if not (Certif.objects.filter(file=new_certif.file) or Certif.objects.filter(name=new_certif.name)):
+            new_certif.save()
+            new_certif.genre.add(genre)
+            return redirect('home')
+
+
 
         return redirect('home')
 
@@ -146,3 +150,25 @@ def add_book(request):
 def reading(request, id):
     certif = Certif.objects.get(id=id)
     return render(request, 'base/reading.html', {'certif': certif})
+
+def delete_certif(request, id):
+    certif = Certif.objects.get(id=id)
+    if request.method == 'POST':
+        certif.picture.delete()
+        certif.file.delete()
+        certif.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', {'certif': certif})
+
+@login_required(login_url='login')
+def update_user(request):
+    user = request.user
+    form = UserForm(instance=user)
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect ('profile', user.id)
+
+    return render(request, 'base/update_user.html', {'form': form})
+

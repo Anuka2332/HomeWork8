@@ -122,7 +122,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-NEDIA_URL = '/files/'
+MEDIA_URL = '/files/'
 
 MEDIA_ROOT = BASE_DIR / 'static/files'
 

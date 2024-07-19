@@ -12,3 +12,8 @@ class BookForms (ModelForm):
     class Meta:
         model = Certif
         fields = '__all__'
+
+class UserForm (ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar', 'username', 'email', 'bio', 'certifs']

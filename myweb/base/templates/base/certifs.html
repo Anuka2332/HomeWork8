@@ -53,17 +53,20 @@ margin: 100px 30px;
   <img src="{{ certif.picture.url}}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">{{certif.name}}</h5>
-    <p class="card-text">{{certif.description}}</p>
+    <p class="card-text">{{certif.description | slice:":100"}}{{ certif.created }}</p>
 
     {% if request.user.is_authenticated %}
 
      <a href="{% url 'reading' certif.id %}" class="btn btn-primary">Read</a>
 
     {% if certif in request.user.books.all %}
-     <a href="{% url 'delete' certif.id %}" class="btn btn-primary">Delete</a>
+     <a href="{% url 'delete' certif.id %}" class="btn btn-primary">Drop</a>
     {% else  %}
      <a href="{% url 'adding' certif.id %}" class="btn btn-primary">Add</a>
      {% endif %}
+      {% if request.user == certif.creator %}
+      <a href="{% url 'delete_certif' certif.id %}" class="btn btn-primary">Delete</a>
+      {% endif %}
    {% endif %}
 
   </div>
