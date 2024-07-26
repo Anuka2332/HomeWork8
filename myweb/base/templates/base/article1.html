@@ -3,30 +3,104 @@
 {% block title %}  <title>kid and slip</title> {% endblock %}
 
 {% block content %}
+<style>
+    .article1div{
+ width: 700px;
+ height: 1000px;
+  margin: 0 auto; /* Horizontally center */
+
+    }
+
+    .article1div2{
+  display: flex; /* Use Flexbox to center content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%; /* Ensure it takes full height if needed */
+  width: 100%; /* Ensure it takes full width of the container */
+
+    }
 
 
+    body {
+      margin: 0;
+      overflow: auto; /* Prevent scrollbars from appearing */
+      background-color: DeepSkyBlue;
+    }
 
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      width: 4px;
+      height: 4px;
+      animation: twinkle 1s infinite;
+    }
+
+    @keyframes twinkle {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+    }
+
+    .star:nth-child(1) { top: 40%; left: 20%; }
+    .star:nth-child(2) { top: 30%; left: 50%; }
+    .star:nth-child(3) { top: 50%; left: 80%; }
+    .star:nth-child(4) { top: 70%; left: 10%; }
+    .star:nth-child(5) { top: 80%; left: 70%; }
+    .star:nth-child(6) { top: 60%; left: 30%; }
+    .star:nth-child(7) { top: 70%; left: 10%; }
+    .star:nth-child(8) { top: 10%; left: 90%; }
+    .star:nth-child(9) { top: 80%; left: 90%; }
+    .star:nth-child(10) { top: 80%; left: 20%; }
+    .star:nth-child(11) { top: 20%; left: 20%; }
+    .star:nth-child(12) { top: 35%; left: 11%; }
+
+
+</style>
+
+<div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+  <div class="star"></div>
+ <div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+
+<div class="article1div2">
 <img src="https://st2.depositphotos.com/1967477/12103/v/450/depositphotos_121032340-stock-illustration-baby-sleeping-on-the-cloud.jpg" >
+</div>
 
-
-<div>
+<div class="article1div">
 <h5> სწორი ძილი მნიშვნელოვანია თითოეული ჩვენგანისთვის, ვინაიდან ცხოვრების ერთ მესამედს სწორედ ძილში ვატარებთ.
 
-ძილის ხანგრძლივობა ყველა ასაკში ინდივიდუალურია:
+ძილის ხანგრძლივობა ყველა ასაკში ინდივიდუალურია:<br><br>
 
-➢ 0 თვიდან 3 თვემდე 14-17 საათი
+➢ 0 თვიდან 3 თვემდე 14-17 საათი<br><br>
 
-➢ 4 თვიდან 11 თვემდე 12-15 საათი
+➢ 4 თვიდან 11 თვემდე 12-15 საათი<br><br>
 
-➢ 1 წლიდან 2 წლამდე 11-14 საათი
+➢ 1 წლიდან 2 წლამდე 11-14 საათი<br><br>
 
-➢ 3 წლიდან 5 წლამდე 10-13 საათი
+➢ 3 წლიდან 5 წლამდე 10-13 საათი<br><br>
 
-➢ 6 წლიდან 13 წლამდე 9-11 საათი
+➢ 6 წლიდან 13 წლამდე 9-11 საათი<br><br>
 
 ➢ 14 წლიდან 17 წლამდე 8-10 საათი
 
-➢ 18 წლიდან 25 წლამდე 7-9 საათი
+➢ 18 წლიდან 25 წლამდე 7-9 საათი<br><br>
 
 თუმცა მეტად საყურადღებოა ძილის ხანგრძლივობა ბავშვებში </h5></div>
 

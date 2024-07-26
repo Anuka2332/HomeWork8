@@ -3,7 +3,29 @@
 {% block title %}  <title>Update User Page</title> {% endblock %}
 
 {% block content %}
-<a href ="{{request.META.HTTP_REFERER}}"> Cancel </a>
+
+
+<style>
+    .updatediv{
+    width: 450px;
+            height: 700px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 50px auto 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow properties */
+
+    }
+
+
+
+</style>
+
+<div class="updatediv">
+<a href ="{{request.META.HTTP_REFERER}}"  style="font-family: 'Arial', sans-serif; font-size: 20px; color: blue; text-decoration: none;"> Cancel </a>
+<br>
+<br>
+
 <form method ="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     {% for field in form  %}
@@ -17,5 +39,5 @@
     <button class="btn btn-secondary" type="submit"> Update Profile </button>
 
 </form>
-
+</div>
 {% endblock %}

@@ -4,13 +4,72 @@
 
 {% block content %}
 
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    position: relative; /* To position the jumping alphabet relative to the body */
+}
 
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
 
-<img src="https://thumbs.dreamstime.com/b/set-children-doing-speech-therapy-teachers-child-development-center-kids-alphabet-letters-play-set-children-108774522.jpg" >
+.jumping-alphabet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    pointer-events: none; /* Ensures the letters don't interfere with other content */
+}
 
+.letter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute; /* Allows positioning relative to the container */
+    animation: bounce 2s infinite ease-in-out;
+}
+
+/* Keyframe animation for bouncing effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
+
+/* Optional: Different delays for each letter to stagger the bouncing effect */
+.letter:nth-child(1) { animation-delay: 0s; }
+.letter:nth-child(2) { animation-delay: 0.1s; }
+.letter:nth-child(3) { animation-delay: 0.2s; }
+.letter:nth-child(4) { animation-delay: 0.3s; }
+.letter:nth-child(5) { animation-delay: 0.4s; }
+.letter:nth-child(6) { animation-delay: 0.5s; }
+</style>
+
+<img src="https://img.freepik.com/free-vector/lovely-education-concept-with-flat-design_23-2147923568.jpg" >
+
+<div class="jumping-alphabet">
+    <span class="letter" style="top: 20%; left: 10%;">A</span>
+    <span class="letter" style="top: 20%; left: 30%;">B</span>
+    <span class="letter" style="top: 30%; left: 90%;">C</span>
+    <span class="letter" style="top: 60%; left: 70%;">D</span>
+    <span class="letter" style="top: 80%; left: 20%;">M</span>
+    <span class="letter" style="top: 50%; left: 80%;">T</span>
+    <span class="letter" style="top: 20%; left: 80%;">A+B=C</span>
+    <span class="letter" style="top: 50%; left: 5%;">2+3=5</span>
+</div>
 
 <div>
-<h5> ადრეული ბავშვობა კრიტიკულად მნიშვნელოვანი
+<h5>
+     ადრეული ბავშვობა კრიტიკულად მნიშვნელოვანი
 პერიოდია ადამიანის ცხოვრებაში. დაბადებიდან ექვს
 წლამდე ასაკი საოცრად სწრაფი და უნიკალური ზრდის
 ხანაა, სწორედ ამ დროს ვითარდება თავის ტვინი ყველაზე
@@ -37,10 +96,13 @@
 სფეროები გვეხმარება განვითარების ყველა ასპექტს
 თანაბარი ყურადღება დავუთმოთ. მოცემულ ბროშურაში
 გთავაზობთ ერთმანეთთან მჭიდროდ დაკავშირებული
-განვითარების ხუთი სფეროს მოკლე აღწერას: (1) ფიზიკური
-განვითარება, 2 დამოუკიდებლობის განვითარება, (3)
-მეტყველების განვითარება, 4 შემეცნებითი განვითარება
-და 5 სოციალურ-ემოციური განვითარება. </h5></div>
+განვითარების ხუთი სფეროს მოკლე აღწერას: <br>
+    1 ფიზიკური
+განვითარება, <br>
+    2 დამოუკიდებლობის განვითარება, <br>
+    3 მეტყველების განვითარება,<br>
+    4 შემეცნებითი განვითარება და<br>
+    5 სოციალურ-ემოციური განვითარება. </h5></div>
 
 
 {% endblock %}
