@@ -5,49 +5,114 @@
 
 {% block content %}
 
-<style>
-    .logindiv{
-    width: 400px;
-            height: 450px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
+
+ <style>
+        .center{
+            height: 100%;
+            margin: 0;
+            margin-top:5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .signup-container {
+            background-color:#cee7fa ;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin: 50px auto 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow properties */
+            width: 100%;
+            max-width: 400px;
+        }
 
-    }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
 
+        .form-group {
+            margin-bottom: 15px;
+        }
 
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-</style>
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
 
-<div class ="logindiv">
-<h1> Login Page </h1>
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #f3ce2d;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+<div class ="center">
+     <div class="signup-container">
+<!--    <h1> Login Page </h1>-->
             <div>
                 <form method="POST" action="">
                     <br>
                     <br>
                     {% csrf_token %}
+                    <div class="form-group">
                     <label>
-                        Username:
+                        სახელი:
                     </label>
-                    <input type ="text" name="username" placeholder="Enter User">
-                    <br>
+                    <input type ="text" name="username" placeholder="შეიყვანეთ სახელი">
+                    </div>
                     <br>
 
+                    <div class="form-group">
                     <label>
-                        Password:
+                        პაროლი:
                     </label>
-                    <input type ="password" name="password" placeholder="Enter Password">
-                    <input type ="submit" value="login">
-
+                    <input type ="password" name="password" placeholder="შეიყვანეთ პაროლი">
+                    </div>
                     <br>
+                    <div class="form-group">
+                    <input type ="submit" value="შესვლა">
+                    </div>
+
                     <br>
                      <p> არ ხართ დარეგისტრირებული ? </p>
                      <a href="{% url 'register' %}"> რეგისტრაცია </a>
 
                 </form>
             </div>
+         </div>
 </div>
 
 {% endblock %}

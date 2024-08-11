@@ -35,7 +35,7 @@ def article3(request, id):
     genres = Genre.objects.all()
     # certifs = certif.objects.all()
     context = {"certifs": certifs}
-    heading = "Certificats"
+    heading = "წიგნები"
     context = {"certifs": certifs, "heading": heading, "genres": genres}
     print(certifs)
     return render(request, 'base/article3.html', context)

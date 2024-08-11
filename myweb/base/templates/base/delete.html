@@ -8,13 +8,74 @@
 <form method ="POST" action ="">
     {% csrf_token %}
 
-    <p> are you Sure You Want to Delete "{{ obj }} ? "</p>
+    <style>
 
-    <input type ="submit" value = "delete">
+        .container {
+            margin-top:5%;
+            background-color: #cee7fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .button {
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+        .button.cancel {
+            background-color: #6c757d;
+        }
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        .button[type="submit"]:hover {
+            background-color: #f3ce2d;
+        }
+
+
+    </style>
+
+
+    <div class="container">
+        <h1>წაშლა</h1>
+
+
+
+<form method ="POST" action ="">
+    {% csrf_token %}
+
+        <p> ნამდვილად გსურთ წაშალოთ {{ obj }} ? </p>
+        <div class="button-group">
+           <input class="button" type ="submit" value = "delete">
+            <button type="button" class="button cancel" onclick="window.history.back();">Cancel</button>
+        </div>
 
 
 </form>
 
-
-
 {% endblock %}
+

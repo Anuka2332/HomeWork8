@@ -6,7 +6,7 @@ from django.forms import ModelForm
 class MyUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'password', 'password2']
+        fields = ['username', 'password1', 'password2']
 
 class BookForms (ModelForm):
     class Meta:

@@ -4,40 +4,98 @@
 
 {% block content %}
 
+ <style>
+        .center{
+            height: 100%;
+            margin: 0;
+            margin-top:2%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-<style>
-    .updatediv{
-    width: 450px;
-            height: 700px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
+
+        }
+
+        .signup-container {
+            background-color:#cee7fa ;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin: 50px auto 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow properties */
+            width: 100%;
+            max-width: 400px;
+        }
 
-    }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
 
+        .form-group {
+            margin-bottom: 15px;
+        }
 
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-</style>
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
 
-<div class="updatediv">
-<a href ="{{request.META.HTTP_REFERER}}"  style="font-family: 'Arial', sans-serif; font-size: 20px; color: blue; text-decoration: none;"> Cancel </a>
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #f3ce2d;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+<div class ="center">
+    <div class="signup-container">
+<a href ="{{request.META.HTTP_REFERER}}"  style="font-family: 'Arial', sans-serif; font-size: 20px; color: blue; text-decoration: none;"> გაუქმება </a>
 <br>
 <br>
 
 <form method ="POST" action="" enctype="multipart/form-data">
     {% csrf_token %}
     {% for field in form  %}
-    <div>
-    <label> {{ field.label }} </label>
-    </div>
+  <div class="form-group">
+ <label>{{ field.label }}</label>
+  {{field }}
+  </div>
 
-    {{ field }}
     {% endfor %}
 
     <button class="btn btn-secondary" type="submit"> Update Profile </button>
 
 </form>
+</div>
 </div>
 {% endblock %}

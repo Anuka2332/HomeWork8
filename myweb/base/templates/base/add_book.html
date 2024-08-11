@@ -5,25 +5,103 @@
 {% block content %}
 
 
-<h1> სერთიფიკატის დამატება </h1>
+ <style>
+        .center{
+            height: 100%;
+            margin: 0;
+            margin-top:2%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .addbook-container {
+            background-color:#cee7fa ;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #f3ce2d;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+
+<div class="center">
+ <div class="addbook-container">
+
+
+<h1> წიგნის დამატება </h1>
 <form action="" method="POST" enctype="multipart/form-data">
    {% csrf_token %}
 <div>
-   <label>Certificat Picture:</label>
+   <label>  წიგნის ფოტო: </label>
    <br>
    {{ form.picture }}
 
 </div>
-
-<div>
-   <label>Certificat Title</label>
+   <br>
+<div class="form-group">
+   <label>წიგნის სახელი </label>
    <br>
    {{ form.name }}
 
 </div>
 
-   <div>
-   <label for="certif_who">Who:</label>
+   <div class="form-group">
+   <label for="certif_who">ავტორი:</label>
    <br>
 <input required type="text" name="who" list="who-list">
       <datalist id="who-list">
@@ -38,10 +116,8 @@
 </div>
 
 
-
-
-      <div>
-   <label for="certif_genre">Description:</label>
+   <div class="form-group">
+   <label for="certif_genre">ჟანრი: </label>
    <br>
 <input required type="text" name="genre" list="genre-list">
       <datalist id="genre-list">
@@ -55,8 +131,8 @@
 
 </div>
 
-<div>
-   <label>Certificat Description</label>
+<div class="form-group">
+   <label> წიგნის აღწერა</label>
    <br>
    {{ form.description }}
 
@@ -70,9 +146,10 @@
 </div>
    <br>
 
-   <input type="submit" value="Create" >
+   <input type="submit" value="დამატება" >
 
 
 </form>
-
-{% endblock %}
+ </div>
+</div>
+   {% endblock %}

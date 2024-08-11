@@ -41,7 +41,7 @@ margin: 100px 30px;
     <br>
     <br>
 
-    <a href="{% url 'add' %}">სერთიფიკატის დამატება</a>
+    <a href="{% url 'add' %}"> წიგნის დამატება </a>
     <br>
     <br>
 
@@ -50,10 +50,10 @@ margin: 100px 30px;
 {% for certif in certifs %}
 
 <div class="card" style="width: 18rem; margin-left:30px">
-  <img src="{{ certif.picture.url}}" class="card-img-top" alt="...">
+  <div style="width: 180px; height:210px; margin-left:30px; margin-top:20px" ><img src="{{ certif.picture.url}}" class="card-img-top" alt="..."></div>
   <div class="card-body">
     <h5 class="card-title">{{certif.name}}</h5>
-    <p class="card-text">{{certif.description | slice:":100"}}{{ certif.created }}</p>
+    <p class="card-text">{{certif.description | slice:":20"}}   <br>{{ certif.created }}</p>
 
     {% if request.user.is_authenticated %}
 

@@ -4,9 +4,85 @@
 
 {% block content %}
 
+<style>
+    .aboutpage{
+           height: 50%;
+
+            margin:10%;
+            margin-top:10%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-indent: 1em; /* Adjust the value to your preference */
 
 
-<div class="p-5 mb-2 bg-primary-subtle text-primary-emphasis">დღევანდელ რეალობაში როცა ცხოვრების ტემპი აჩქარებულია,  ჩვენი საიტი მშობლებს საშუალებას აძლევს მარტივად იპოვონ სასურველი აღმზრდელები. ჩვენს საიტზე დარეგისტრირებული აღმზრდელები შეგიძლიათ აარჩიოთ მათთვის თავისუფალი დროით,  გამოცდილებით და რეკომენდატორებით. .</div>
+    }
 
+
+    .jumping-emogy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    pointer-events: none; /* Ensures the letters don't interfere with other content */
+}
+
+
+.letter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    position: absolute; /* Allows positioning relative to the container */
+    animation: bounce 2s infinite ease-in-out;
+}
+
+
+/* Keyframe animation for bouncing effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+    }
+
+
+/* Optional: Different delays for each letter to stagger the bouncing effect */
+.letter:nth-child(1) { animation-delay: 0s; }
+.letter:nth-child(2) { animation-delay: 0.1s; }
+.letter:nth-child(3) { animation-delay: 0.2s; }
+.letter:nth-child(4) { animation-delay: 0.3s; }
+.letter:nth-child(5) { animation-delay: 0.4s; }
+.letter:nth-child(6) { animation-delay: 0.5s; }
+
+
+
+</style>
+
+<div class="jumping-emogy">
+    <span class="letter" style="top: 20%; left: 10%;">🧸</span>
+    <span class="letter" style="top: 20%; left: 30%;">🧸</span>
+    <span class="letter" style="top: 30%; left: 90%;">🌟</span>
+    <span class="letter" style="top: 60%; left: 70%;">🚀</span>
+    <span class="letter" style="top: 80%; left: 20%;">🌞</span>
+    <span class="letter" style="top: 50%; left: 80%;">📖</span>
+    <span class="letter" style="top: 50%; left: 50%;">🦄</span>
+    <span class="letter" style="top: 70%; left: 40%;">🍎</span>
+    <span class="letter" style="top: 85%; left: 60%;">🦒</span>
+    <span class="letter" style="top: 20%; left: 80%;">🎓</span>
+    <span class="letter" style="top: 90%; left: 80%;">🪁</span>
+    <span class="letter" style="top: 50%; left: 5%;">💫</span>
+</div>
+
+
+
+
+
+<div class="aboutpage"><p>  კეთილი იყოს თქვენი მობრძანება ჩვენს საიტზე - ინტერნეტის ჯადოსნური კუთხე, სადაც სწავლა და ფანტაზია ერთმანეთს ერწყმის! 🌟
+ჩვენ გვჯერა, რომ ყველა ბავშვს აქვს ნაპერწკალი✨, რომელიც ელოდება ბრწყინვალებას 🌞. ჩვენი საიტი სავსეა მომხიბლავი ზღაპრებით 📖, მომხიბლავი წიგნებით და სახალისო სტატიებით, რომლებიც შექმნილია ცნობისმოყვარეობის გასაღვივებლად და სწავლისადმი სიყვარულის გასაღვივებლად 💡.
+
+შემოგვიერთდით ამ თავგადასავალში 🚀, სადაც ყოველი გვერდი იქცევა ახალ აღმოჩენად და ყოველი ამბავი ხსნის შესაძლებლობების სამყაროს. ერთად აღვზარდოთ ნათელი გონება!</p></div>
 
 {% endblock %}
