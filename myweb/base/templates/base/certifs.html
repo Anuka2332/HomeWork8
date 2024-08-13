@@ -5,6 +5,7 @@
   }
 .genres{
 margin: 100px 30px;
+color: black;
 
 }
     .row {
@@ -25,10 +26,10 @@ margin: 100px 30px;
 <div class="genres">
   <h1>ფილტრი</h1>
   <br>
-  <a href="{{ request.path }}"> ALl ({{ genres.count }}) </a>
+  <a style="color: black"; href="{{ request.path }}"> ALl ({{ genres.count }}) </a>
   {% for genre in genres %}
   <hr>
-  <a href="{{ request.path }}?q={{ genre.name }}">{{genre}} ({{ genres.count }})</a>
+  <a style="color: black"; href="{{ request.path }}?q={{ genre.name }}">{{genre}} ({{ genres.count }})</a>
   {% endfor %}
 
 

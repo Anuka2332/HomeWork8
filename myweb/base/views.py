@@ -8,6 +8,9 @@ from .forms import MyUserCreationForm, BookForms, UserForm
 from .seeder import seeder_func
 from django.contrib import messages
 
+
+
+
 # Create your views here.
 
 
@@ -188,3 +191,4 @@ def delete_comment(request, id):
         comment.delete()
         return redirect('reading', certif.id)
     return render(request, 'base/delete.html', {'obj': comment})
+
