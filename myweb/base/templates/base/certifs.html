@@ -29,7 +29,7 @@ color: black;
   <a style="color: black"; href="{{ request.path }}"> ALl ({{ genres.count }}) </a>
   {% for genre in genres %}
   <hr>
-  <a style="color: black"; href="{{ request.path }}?q={{ genre.name }}">{{genre}} ({{ genres.count }})</a>
+  <a style="color: black"; href="{{ request.path }}?q={{ genre.name }}">{{genre}} ({{ genre.certifs.count }})</a>
   {% endfor %}
 
 
