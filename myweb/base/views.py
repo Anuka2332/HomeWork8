@@ -17,7 +17,7 @@ from django.contrib import messages
 def home(request):
     return render(request, 'base/home.html')
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def about(request):
     return render(request, 'base/about.html')
 
@@ -32,7 +32,7 @@ def article2(request):
 
 def article3(request, id):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
-    seeder_func()
+    # seeder_func()
     certifs = Certif.objects.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(genre__name__icontains=q))
     certifs = list(dict.fromkeys(certifs))
     genres = Genre.objects.all()
@@ -131,7 +131,7 @@ def add_book(request):
         certif_genre = request.POST.get('genre')
 
         who, created = Who.objects.get_or_create(name=certif_who)
-        genre, created = Genre.objects.get_or_create(name=certif_who)
+        genre, created = Genre.objects.get_or_create(name=certif_genre)
 
         form = BookForms(request.POST)
 

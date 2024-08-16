@@ -26,7 +26,7 @@ color: black;
 <div class="genres">
   <h1>ფილტრი</h1>
   <br>
-  <a style="color: black"; href="{{ request.path }}"> ALl ({{ genres.count }}) </a>
+  <a style="color: black"; href="{{ request.path }}"> ALl <span>({{ genres.count }})</span> </a>
   {% for genre in genres %}
   <hr>
   <a style="color: black"; href="{{ request.path }}?q={{ genre.name }}">{{genre}} ({{ genre.certifs.count }})</a>
